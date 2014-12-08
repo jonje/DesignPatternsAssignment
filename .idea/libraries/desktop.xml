@@ -1,7 +1,7 @@
 <component name="libraryTable">
   <library name="desktop">
     <CLASSES>
-      <root url="jar://$USER_HOME$/Downloads/desktop.jar!/" />
+      <root url="jar://$PROJECT_DIR$/desktop.jar!/" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/Downloads/doc.zip!/doc" />
