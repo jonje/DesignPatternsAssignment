@@ -88,6 +88,7 @@ public class Window extends AWindow implements INotifiable {
             if(x >= xBound) {
                 x = initialx;
                 y += yIncrease;
+
             } else if(y >= yBound) {
                 endNotFound = false;
             }
@@ -103,31 +104,7 @@ public class Window extends AWindow implements INotifiable {
 
             }
 
-
         }
-
-//        for( int y = initialy; y < yBound; y += yIncrease) {
-//            for( int x = initialx; x < xBound; x += xIncrease) {
-//                char character ='\0';
-//
-//                if(leftIterator.hasNext()) {
-//                    character = leftIterator.next();
-//
-//
-//                } else if(rightIterator.hasNext()) {
-//                    character = rightIterator.next();
-//                }
-//
-//                if(character == '#') {
-//
-//                    x = xBound;
-//
-//                } else {
-//                    characters[y][x] = character;
-//                }
-//            }
-//        }
-
 
     }
 
