@@ -69,20 +69,27 @@ public class KeyBuffer {
 
     }
 
-    public void backspace() {
+    public char backspace() {
+        char temp = '\0';
         if(left.size() > 1) {
+
             Character cursor = left.pop();
-            left.pop();
+            temp = left.pop();
             left.push(cursor);
 
         }
+
+        return temp;
     }
 
-    public void delete() {
+    public char delete() {
+        char temp = '\0';
         if(right.size() > 0) {
-            right.pop();
+            temp = right.pop();
 
         }
+
+        return temp;
     }
 
     public class StackIterator implements Iterator<Character> {
