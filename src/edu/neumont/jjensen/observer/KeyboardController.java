@@ -14,12 +14,15 @@ public class KeyboardController {
     private KeyBuffer keyBuffer;
     private Stack<ICommand> undo;
     private Stack<ICommand> redo;
+    private Window window;
 
-    public KeyboardController(KeyBuffer keyBuffer) {
+    public KeyboardController(KeyBuffer keyBuffer, Window window) {
         this.keyBuffer = keyBuffer;
 
         this.undo = new Stack<>();
         this.redo = new Stack<>();
+
+        this.window = window;
 
     }
 
@@ -79,6 +82,16 @@ public class KeyboardController {
                     command.Undo();
                     redo.push(command);
                 }
+
+                break;
+
+            // <
+            case 60:
+                window.setTextWrapper(new TextWrapOff());
+                break;
+            // >
+            case 62:
+                window.setTextWrapper(new TextWrapOn());
 
                 break;
 

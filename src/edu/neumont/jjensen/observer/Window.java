@@ -27,11 +27,10 @@ public class Window extends AWindow implements INotifiable {
     private int yIncrease = 25;
     private int xIncrease = 11;
 
-    private List<Character> listOfChars;
+    private ITextWrapper textWrapper;
 
     public Window(Desktop desktop, AbstractKeyboard keyboard, Point point1, Point point2) {
         super(desktop, point1, point2);
-        listOfChars = new ArrayList<Character>();
 
         this.desktop = desktop;
         this.keyboard = keyboard;
@@ -46,20 +45,21 @@ public class Window extends AWindow implements INotifiable {
         this.characters = new Character[yBound][xBound];
         this.keyBuffer = new KeyBuffer();
 
-        this.keyboardController = new KeyboardController(keyBuffer);
+        this.keyboardController = new KeyboardController(keyBuffer, this);
         initialx = point1.getX();
         initialy = point1.getY();
 
         initialx += xIncrease;
         initialy += yIncrease;
 
+        textWrapper = new TextWrapOn();
     }
 
 
     @Override
     public void paint(DesktopGraphics desktopGraphics) {
         desktopGraphics.fillRectangle(point1, point2, DesktopColor.DARK_GRAY);
-        setupArray();
+        characters = textWrapper.loadText(initialx, initialy, keyBuffer.iterator(), xBound, yBound, xIncrease, yIncrease);
 
         for(int y = initialy; y < yBound; y += yIncrease) {
             for(int x = initialx; x < xBound; x += xIncrease) {
@@ -71,6 +71,10 @@ public class Window extends AWindow implements INotifiable {
             }
         }
 
+    }
+
+    public void setTextWrapper(ITextWrapper textWrapper) {
+        this.textWrapper = textWrapper;
     }
 
     private void setupArray() {
