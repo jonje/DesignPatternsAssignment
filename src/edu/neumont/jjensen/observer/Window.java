@@ -43,7 +43,8 @@ public class Window extends AWindow implements INotifiable {
         this.yBound = point2.getY() -5;
 
         this.characters = new Character[yBound][xBound];
-        this.keyBuffer = new KeyBuffer();
+
+        this.keyBuffer = new KeyBuffer(yBound);
 
         this.keyboardController = new KeyboardController(keyBuffer, this);
         initialx = point1.getX();
@@ -52,7 +53,7 @@ public class Window extends AWindow implements INotifiable {
         initialx += xIncrease;
         initialy += yIncrease;
 
-        textWrapper = new TextWrapOn();
+        textWrapper = new TextWrapOff();
     }
 
 

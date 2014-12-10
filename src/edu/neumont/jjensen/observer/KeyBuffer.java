@@ -9,10 +9,12 @@ public class KeyBuffer {
     private Stack<Character> right;
     private Stack<Character> left;
 
-    public KeyBuffer() {
+    private int windowHeight;
+
+    public KeyBuffer( int windowSize) {
         this.right = new Stack<>();
         this.left = new Stack<>();
-
+        this.windowHeight = windowSize;
         left.add('|');
 
     }
@@ -25,10 +27,22 @@ public class KeyBuffer {
     }
 
     public Iterator<Character> getLeft() {
-        return left.iterator();
+        Stack<Character> tempStack = new Stack<>();
+        int stackSize = left.size();
+        if(stackSize > windowHeight) {
+            int difference = stackSize - windowHeight;
+            for (int i = difference; i <= stackSize; i++) {
+                tempStack.push(left.get(i));
+            }
+        } else {
+            tempStack = left;
+        }
+
+        return tempStack.iterator();
     }
 
     public Iterator<Character> getRight() {
+
         Stack<Character> tempStack = new Stack<>();
 
         for(int i = right.size() -1; i >= 0; i-- ) {
@@ -90,6 +104,10 @@ public class KeyBuffer {
         }
 
         return temp;
+    }
+
+    public int getLeftSize() {
+        return left.size();
     }
 
     public class StackIterator implements Iterator<Character> {

@@ -43,27 +43,42 @@ public class TextWrapOn implements ITextWrapper {
 
                 }
 
+                if(character.equals('#')) {
+                    x = initialx;
+                    y += yIncrease;
 
-            } else if(y >= yBound) {
+                } else if(character.equals(' ')){
+                    word = "";
+                    characters[y][x] = character;
+                    x += xIncrease;
+                } else {
+                    characters[y][x] = character;
+
+                    x += xIncrease;
+                    word += character;
+
+                }
+
+            } else if(y > yBound) {
                 endNotFound = false;
-            }
 
-
-            if(character.equals('#')) {
-                x = initialx;
-                y += yIncrease;
-
-            } else if(character.equals(' ')){
-                word = "";
-                characters[y][x] = character;
-                x += xIncrease;
             } else {
-                characters[y][x] = character;
-//                System.out.println("(" +y + ", " + x + ") = " + character);
-                x += xIncrease;
-                word += character;
+                if(character.equals('#')) {
+                    x = initialx;
+                    y += yIncrease;
 
+                } else if(character.equals(' ')){
+                    word = "";
+                    characters[y][x] = character;
+                    x += xIncrease;
 
+                } else {
+                    characters[y][x] = character;
+
+                    x += xIncrease;
+                    word += character;
+
+                }
             }
 
         }
